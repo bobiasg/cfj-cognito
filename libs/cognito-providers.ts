@@ -37,10 +37,10 @@ export function getProvider(provider: TProvider): Provider {
 
     // Authorization endpoint configuration
     authorization: {
-      url: `${COGNITO_DOMAIN}/oauth2/authorize`,
+      // url: `${COGNITO_DOMAIN}/oauth2/authorize`,
       params: {
-        response_type: "code",
-        client_id: COGNITO_CLIENT_ID,
+        // response_type: "code",
+        // client_id: COGNITO_CLIENT_ID,
         identity_provider: provider,
         redirect_uri: `${NEXTAUTH_URL}/api/auth/callback/cognito_${provider.toLowerCase()}`
       }
@@ -69,6 +69,7 @@ export function getProvider(provider: TProvider): Provider {
         id: profile.sub,
         ...profile
       }
-    }
+    },
+    checks: ['pkce', 'nonce']
   }
 }

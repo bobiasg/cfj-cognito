@@ -1,7 +1,8 @@
+import CallApiExample from "@/components/call-api-example";
 import { auth } from "@/libs/auth"
 
 export default async function Index() {
-  const session = await auth()
+  const session = await auth();
 
   return (
     <div className="flex flex-col gap-6">
@@ -10,6 +11,9 @@ export default async function Index() {
         This is an example site to demonstrate how to use NextAuth with Cognito
       </div>
       <div className="flex flex-col bg-gray-100 rounded-md">
+        {session && <CallApiExample />}
+            
+
         <div className="p-4 font-bold bg-gray-200 rounded-t-md">
           Current Session
         </div>
