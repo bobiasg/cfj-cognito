@@ -1,4 +1,5 @@
 import CallApiExample from "@/components/call-api-example";
+import CallS3Example from "@/components/call-s3-example";
 import { auth } from "@/libs/auth"
 
 export default async function Index() {
@@ -11,8 +12,13 @@ export default async function Index() {
         This is an example site to demonstrate how to use NextAuth with Cognito
       </div>
       <div className="flex flex-col bg-gray-100 rounded-md">
-        {session && <CallApiExample />}
-            
+        <div className="p-4 font-bold bg-gray-200 rounded-t-md">
+          {session && <CallApiExample />}
+        </div>
+
+        <div className="p-4 font-bold bg-gray-200 rounded-t-md">
+          {session && <CallS3Example />}
+        </div>
 
         <div className="p-4 font-bold bg-gray-200 rounded-t-md">
           Current Session

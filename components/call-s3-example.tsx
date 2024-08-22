@@ -4,20 +4,20 @@ import { useSession } from "next-auth/react"
 import { Button } from "./ui/button"
 import { useState } from "react"
 
-export default function CallApiExample() {
+export default function CallS3Example() {
   const { data: session, status } = useSession()
   const [apiResponse, setApiResponse] = useState("")
 
   const makeRequestWithToken = async () => {
     try {
-      const response = await fetch('https://06gfqqzl55.execute-api.ap-southeast-1.amazonaws.com/prod/pets',{
+      const response = await fetch('/api/aws/s3',{
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + session?.accessToken,
         },
       })
       const data = await response.json()
+      console.log(data);
       setApiResponse(JSON.stringify(data, null, 2))
     } catch (error) {
       setApiResponse("Failed to fetch data: " + error)
@@ -34,7 +34,7 @@ export default function CallApiExample() {
             disabled={!session?.accessToken}
             onClick={makeRequestWithToken}
           >
-            Make API Request
+            Make S3 Request
           </Button>
         </div>
         <pre>{apiResponse}</pre>

@@ -32,7 +32,7 @@ export default function SignInPage() {
     }) as SignInResponse;
     console.log("response", response)
 
-    if (response.ok === false) {
+    if (response?.ok === false) {
       console.log("error: ", response.error);
       console.log("status: ", response.status);
     } 

@@ -50,7 +50,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
               USERNAME: username as string,
               PASSWORD: password as string,
               SECRET_HASH: secretHash,
-          },
+          }
         });
         
         try {
