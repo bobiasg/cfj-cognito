@@ -21,6 +21,10 @@ export default async function Index() {
         </div>
 
         <div className="p-4 font-bold bg-gray-200 rounded-t-md">
+          {session && <CallS3Example path='Legal' />}
+        </div>
+
+        <div className="p-4 font-bold bg-gray-200 rounded-t-md">
           Current Session
         </div>
         <pre className="py-6 px-4 whitespace-pre-wrap break-all">

@@ -4,9 +4,14 @@ import {
     ListObjectsV2Command,
     S3Client,
   } from "@aws-sdk/client-s3"
+import { useParams, useSearchParams } from "next/navigation";
+import { NextRequest } from "next/server";
 
-export async function GET(req: Request) {
+export async function GET(req: NextRequest) {
     const session = await   auth()
+    const path = req.nextUrl.searchParams.get('path');
+    console.log(path)
+
     if (!session)
         return Response.json({error: 'Method Not Allowed'}, {status: 405})
 
@@ -31,7 +36,7 @@ export async function GET(req: Request) {
         const { Contents } = await client.send(
             new ListObjectsV2Command ({
               Bucket: 'cfj-ws-01',
-            //   Prefix: `${credentials.identityId}/`,
+              Prefix:  path ?? '*',
             })
           )
 

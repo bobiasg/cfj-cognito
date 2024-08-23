@@ -3,14 +3,15 @@
 import { useSession } from "next-auth/react"
 import { Button } from "./ui/button"
 import { useState } from "react"
+import path from "path"
 
-export default function CallS3Example() {
+export default function CallS3Example({path}: {path?: string}) {
   const { data: session, status } = useSession()
   const [apiResponse, setApiResponse] = useState("")
 
   const makeRequestWithToken = async () => {
     try {
-      const response = await fetch('/api/aws/s3',{
+      const response = await fetch(`api/aws/s3?path=${path}`,{
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -34,7 +35,7 @@ export default function CallS3Example() {
             disabled={!session?.accessToken}
             onClick={makeRequestWithToken}
           >
-            Make S3 Request
+            Make S3 Request {path ? `: ${path}`: null}
           </Button>
         </div>
         <pre>{apiResponse}</pre>
